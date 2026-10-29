@@ -35,7 +35,7 @@ if not SECRET_KEY:
         raise RuntimeError("DJANGO_SECRET_KEY must be set when DJANGO_DEBUG is off.")
     SECRET_KEY = "dev-only-insecure-secret-key-change-me"
 
-ALLOWED_HOSTS = env_list("DJANGO_ALLOWED_HOSTS", "https://ghost-vault-cloth-backend.vercel.app")
+ALLOWED_HOSTS = env_list("DJANGO_ALLOWED_HOSTS", "ghost-vault-cloth-backend.vercel.app")
 
 # Where the React app runs locally: `npm start` (3000), Vite's default (5173)
 # and this project's `npm run dev` (8080).

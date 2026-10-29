@@ -130,6 +130,7 @@ Copy `.env.example` to `.env`. Everything has a default for local use.
 | ----------------------- | -------------------------- | ----------------------------------------- |
 | `DJANGO_DEBUG`          | `0`                        | Set to `1` for local development          |
 | `DJANGO_SECRET_KEY`     | (dev key when debug is on) | Required when debug is off                |
+| `DJANGO_ALLOWED_HOSTS`  | `localhost,127.0.0.1,0.0.0.0` | Comma-separated hostnames; do not include a scheme |
 | `DATABASE_URL`          | empty (SQLite)             | PostgreSQL connection string              |
 | `DATABASE_SSL_REQUIRE`  | `0`                        | Set to `1` for Supabase                   |
 | `CORS_ALLOWED_ORIGINS`  | localhost ports 3000, 5173, 8080 | Frontend addresses allowed to call the API |
