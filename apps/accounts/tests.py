@@ -393,3 +393,5 @@ class OwnerCleanupMigrationTests(APITestCase):
         self.assertFalse(User.objects.filter(email="12hashamahmed@gmail.com").exists())
         order.refresh_from_db()
         self.assertIsNone(order.user)  # order history kept
+
+
