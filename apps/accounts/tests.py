@@ -147,6 +147,7 @@ class AuthFlowTests(APITestCase):
             format="json",
         )
         self.assertEqual(ok.status_code, 200)
+        self.assertTrue(User.objects.get(email="member@ghost.test").check_password("N3w-vault-pass!"))
 
     def test_createsuperuser_gets_approved_profile(self):
         admin = User.objects.create_superuser("root@ghost.test", PASSWORD)
@@ -260,6 +261,17 @@ class AccessRulesTests(APITestCase):
         self.admin.refresh_from_db()
         self.as_user(self.admin)
         self.assertEqual(self.client.get("/api/auth/members/").status_code, 403)
+
+    def test_admin_can_change_own_password(self):
+        self.as_user(self.admin)
+        res = self.client.post(
+            "/api/auth/password/change/",
+            {"current_password": PASSWORD, "new_password": "N3w-vault-pass!"},
+            format="json",
+        )
+        self.assertEqual(res.status_code, 200, res.data)
+        self.admin.refresh_from_db()
+        self.assertTrue(self.admin.check_password("N3w-vault-pass!"))
 
     # --- the owner ----------------------------------------------------------
 
